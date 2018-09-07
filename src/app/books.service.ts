@@ -4,9 +4,9 @@ import * as config from './config.js';
 
 @Injectable()
 export class BooksService{
-    constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-    getBooks() {
-        return this.http.get(config.default.urls.getAll);
-    }
+  getBooks() {
+    return this.http.get(config.default.urls.getAll);
+  }
 }

@@ -19,7 +19,6 @@ export class NewBookComponent implements OnInit {
   form: FormGroup;
   book: Book;
   constructor(
-    //private fb: FormBuilder,
     public dialogRef: MatDialogRef<NewBookComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
     this.book = data;
