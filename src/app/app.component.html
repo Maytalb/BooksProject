@@ -1,0 +1,32 @@
+<div>
+  <mat-progress-bar *ngIf="loading" color="warn" mode="indeterminate"></mat-progress-bar>
+  <mat-toolbar color="primary">
+    <span>My Libray</span>
+    <span class="fill-remaining-space"></span>
+    <button mat-raised-button (click)="openDialog()">add book</button>
+  </mat-toolbar>
+</div>
+
+<div class="container-fluid" style="margin-top: 10px">
+    <div class="table-row header">
+      <div class="text">Book ID</div>
+      <div class="text">Book Title</div>
+      <div class="text">Author</div>
+      <div class="text">Published Date</div>
+      <div class="col-3"></div>
+    </div>
+  
+    <div class="table-row" *ngFor="let book of books">
+      <div class="text">{{book._id}}</div>
+      <div class="text">{{book.BookTitle | capitalize}}</div>
+      <div class="text" title="vasan@example.com">{{book.AuthorName}}</div>
+      <div class="text">{{book.PublishedDate}}</div>
+      <div class="col-3">
+          <button mat-flat-button (click)="openDialog(book)"><i class="fa fa-pen"></i> Edit</button>
+          <button mat-flat-button (click)="openDeleteDialog(book._id)"><i class="fa fa-trash-alt"></i> Delete</button>
+        </div>
+        <mat-divider></mat-divider>
+    </div>   
+  </div>
+
+

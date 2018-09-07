@@ -1,0 +1,84 @@
+.mat-toolbar {
+  display: flex;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.flex-grid {
+  display: flex !important;
+}
+
+.col-1 {
+  width: 8.33333%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.col-2 {
+  width: 16.66666%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.col-3 {
+  width: 25%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.col-4 {
+  width: 33.33333%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.col-5 {
+  width: 41.66666%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.col-6 {
+  width: 50%;
+  vertical-align: middle;
+  line-height: 36px;
+}
+
+.mat-list-text {
+    text-align: center;
+}
+
+.table-row {
+  display: flex;
+  display: -webkit-flex;
+  flex-direction: row;
+  -webkit-flex-direction: row;
+  flex-grow: 0;
+  -webkit-flex-grow: 0;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.text {
+  width: 280px;
+}
+
+body {
+  font-size: 20px;
+}
+
+.table-row {
+  border-bottom: 2px solid #e0e0e0;
+  border-collapse: collapse;
+  padding-top: 5px;
+}
+.table-row.header {
+  background-color: #FFEEDB;
+  font-weight: bold;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

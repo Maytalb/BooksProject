@@ -1,0 +1,26 @@
+<div class="new-book-dialog">
+  <mat-dialog-content [formGroup]="form">
+    <mat-form-field class="form-field">
+      <input type="text" matInput required placeholder="Title" formControlName="bookTitle" />
+      <mat-error *ngIf="bookTitle.invalid && (bookTitle.dirty || bookTitle.touched)">
+        Book title is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input type="text" matInput required placeholder="Author" formControlName="authorName">
+      <mat-error *ngIf="authorName.invalid && (authorName.dirty || authorName.touched)" class="alert alert-danger">
+        Author name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-field">
+      <input type="date" matInput required placeholder="Published Date" formControlName="publishedDate">
+      <mat-error *ngIf="publishedDate.invalid && (publishedDate.dirty || publishedDate.touched)" class="alert alert-danger">
+        Published date is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions class="buttons">
+    <button mat-button (click)="save()" [disabled]="!form.valid">Save</button>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  </mat-dialog-actions>
+</div>

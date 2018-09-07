@@ -1,0 +1,7 @@
+.delete-dialog {
+  font-size: 30px;
+}
+
+.delete-dialog .buttons {
+  flex-direction: row-reverse;
+}

@@ -1,0 +1,12 @@
+.new-book-dialog {
+  font-size: 30px;
+}
+
+.new-book-dialog .form-field {
+  width: 450px;
+  padding: 10px 0;
+}
+
+.new-book-dialog .buttons {
+  flex-direction: row-reverse;
+}
