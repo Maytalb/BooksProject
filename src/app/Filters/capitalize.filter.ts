@@ -1,14 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';  
 
 @Pipe({  
-    name: 'capitalize'  
-})  
-  
+  name: 'capitalize'  
+}) 
 export class Capitalize implements PipeTransform {  
     transform(value: any): any {
         value = value.replace('  ', ' ');
+        
         if (value) {
           let w = '';
+          
           if (value.split(' ').length > 0) {
             value.split(' ').forEach(word => {
               word = word.replace(/[^0-9a-z]/gi, '');
@@ -21,6 +22,7 @@ export class Capitalize implements PipeTransform {
           
           return w;
         }
+        
         return value;
       }  
 }  

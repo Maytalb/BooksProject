@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormGroup, FormBuilder, ReactiveFormsModule, FormControl, Validators  } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { FormGroup, FormControl, Validators  } from '@angular/forms';
 import { Book } from '../Models/Book';
 
 export interface DialogData {
@@ -32,14 +32,6 @@ export class NewBookComponent implements OnInit {
       'publishedDate': new FormControl(this.book.PublishedDate, [Validators.required]),
       '_id': new FormControl(this.book._id, [])
     });
-    /*
-    this.form = this.fb.group({
-      authorName: [this.book.AuthorName, [Validators.required]],
-      bookTitle: [this.book.BookTitle, [Validators.required]],
-      publishedDate: [this.book.PublishedDate, [Validators.required]],
-      _id: [this.book._id, []]
-    });
-    */
   }
   
   get bookTitle() {
@@ -55,7 +47,6 @@ export class NewBookComponent implements OnInit {
   }
 
   save(): void {
-    console.log('this.form.value: ', this.form.value);
     this.dialogRef.close(this.form.value);
   }
 

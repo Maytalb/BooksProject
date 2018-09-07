@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid';
 import { Book } from './Models/Book';
 import { DeleteDialog } from './Dialogs/delete-dialog.component';
 import { MatSnackBar } from '@angular/material';
-import { fa } from 'fontawesome';
 
 @Component({
   selector: 'app-root',
@@ -56,7 +55,6 @@ export class AppComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result !== 'Cancel') {
-        console.log('The dialog was closed');
         this.remove(this.selectedId);
       } else {
         this.selectedId = '';
@@ -75,13 +73,9 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed with res: ' + result);
-
       if (result !== 'Cancel') {
         let errors = '';
         this.loading = true;
-        console.log('result: ', result);
-        // Check if create 
         errors = this.checkFields(result);
 
         if (errors == '') {
@@ -108,7 +102,7 @@ export class AppComponent implements OnInit {
 
         this.loading = false;
       }
-    });    
+    });
   }
 
   openSnackBar(message: string, action: string = 'OK'): void {
@@ -155,4 +149,3 @@ export class AppComponent implements OnInit {
     return status;
   }
 }
-

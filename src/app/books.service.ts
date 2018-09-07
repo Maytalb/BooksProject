@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Book } from './Models/Book';
 import * as config from './config.js';
 
 @Injectable()
