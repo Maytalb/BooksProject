@@ -90,3 +90,9 @@ body {
   padding-top: 8px;
   padding-bottom: 8px;
 }
+
+@media (max-width: 767px) {
+  .hidden-xs {
+    display: none !important;
+  }
+}

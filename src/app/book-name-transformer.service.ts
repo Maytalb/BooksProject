@@ -7,7 +7,7 @@ export class BookNameTransformerService {
 
   constructor() { }
 
-  public transform(value: any): string {
+  public fixText(value: any): string {
     value = value.replace('  ', ' ');
        
     if (value) {

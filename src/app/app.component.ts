@@ -86,11 +86,11 @@ export class AppComponent implements OnInit {
           errors = this.checkFields(result);
   
           if (errors == '') {
-            const resultBookTitle = this.bookNameTransformer.transform(result.bookTitle);
+            const resultBookTitle = this.bookNameTransformer.fixText(result.bookTitle);
 
             const res = this.books.findIndex((x) => {
-              const newBookTitle = this.bookNameTransformer.transform(x.BookTitle);
-              return newBookTitle == resultBookTitle && x._id !== result._id;
+              const tableBookTitle = this.bookNameTransformer.fixText(x.BookTitle);
+              return tableBookTitle == resultBookTitle && x._id !== result._id;
             });
 
             if (res >= 0) {

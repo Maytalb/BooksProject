@@ -7,6 +7,6 @@ import { BookNameTransformerService } from '../book-name-transformer.service';
 export class CapitalizePipe implements PipeTransform {
   constructor(private service: BookNameTransformerService) {}
     transform(value: any): any {
-      return this.service.transform(value);
+      return this.service.fixText(value);
     }
 }  

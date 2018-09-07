@@ -22,8 +22,8 @@
     <div class="text">{{book.AuthorName}}</div>
     <div class="text">{{book.PublishedDate}}</div>
     <div class="text">
-      <button mat-flat-button (click)="openDialog(book)"><i class="fa fa-pencil fa-fw"></i> Edit</button>
-      <button mat-flat-button color="accent" (click)="openDeleteDialog(book._id)"><i class="fa fa-trash fa-fw"></i> Delete</button>
+      <button mat-flat-button (click)="openDialog(book)"><i class="fa fa-pencil fa-fw"></i> <span class="hidden-xs">Edit</span></button>
+      <button mat-flat-button color="accent" (click)="openDeleteDialog(book._id)"><i class="fa fa-trash fa-fw"></i> <span class="hidden-xs">Delete</span></button>
     </div>
   </div>   
 </div>
