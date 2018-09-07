@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
     this.selectedId = id;
     const dialogRef = this.dialog.open(DeleteDialog, {
       width: '500px',
-      data: id
+      data: id,
+      disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -69,7 +70,8 @@ export class AppComponent implements OnInit {
 
     const dialogRef = this.dialog.open(NewBookComponent, {
       width: '500px',
-      data: product
+      data: product,
+      disableClose: false
     });
 
     dialogRef.afterClosed().subscribe(result => {

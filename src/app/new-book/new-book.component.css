@@ -3,10 +3,14 @@
 }
 
 .new-book-dialog .form-field {
-  width: 450px;
-  padding: 10px 0;
+  width: 400px;
+  padding: 5px 0;
 }
 
 .new-book-dialog .buttons {
   flex-direction: row-reverse;
+}
+
+.new-book-dialog .form-field-error {
+  font-size: 12px;
 }
