@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { Book } from './Models/Book';
 import { DeleteDialog } from './Dialogs/delete-dialog.component';
 import { MatSnackBar } from '@angular/material';
+import { BookNameTransformerService } from './book-name-transformer.service';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +21,8 @@ export class AppComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private snackBar: MatSnackBar,
-    private service: BooksService) { }
+    private service: BooksService,
+    private bookNameTransformer: BookNameTransformerService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -29,8 +31,10 @@ export class AppComponent implements OnInit {
       (data: any) => {
         var allBooksData = data.items;
         allBooksData.forEach(book => {
-          var newBook = new Book(book.id, book.volumeInfo.authors[0], book.volumeInfo.title, book.volumeInfo.publishedDate);
-          this.books.push(newBook);
+          if (book.volumeInfo.publishedDate.length > 4){
+            var newBook = new Book(book.id, book.volumeInfo.authors[0], book.volumeInfo.title, book.volumeInfo.publishedDate);
+            this.books.push(newBook);
+          }
         });      
       }, 
       error => console.log(error),
@@ -55,11 +59,11 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== 'Cancel') {
+      if (result && result === 'ok') {
         this.remove(this.selectedId);
       } else {
         this.selectedId = '';
-      }      
+      }
     });
   }
 
@@ -75,34 +79,39 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== 'Cancel') {
-        let errors = '';
-        this.loading = true;
-        errors = this.checkFields(result);
+      if (result) {
+        if (result !== 'Cancel') {
+          let errors = '';
+          this.loading = true;
+          errors = this.checkFields(result);
+  
+          if (errors == '') {
+            const resultBookTitle = this.bookNameTransformer.transform(result.bookTitle);
 
-        if (errors == '') {
-          const res = this.books.findIndex((x) => {
-            return x.BookTitle.toLowerCase() == result.bookTitle.toLowerCase() && x._id !== result._id;
-          });
-          
-          if (res >= 0) {
-            this.openSnackBar('Error: book already exists');
-          } else {
-            if (result._id == '') {
-              const newBook = new Book(uuid(), result.authorName, result.bookTitle, result.publishedDate);
-              this.books.push(newBook);
+            const res = this.books.findIndex((x) => {
+              const newBookTitle = this.bookNameTransformer.transform(x.BookTitle);
+              return newBookTitle == resultBookTitle && x._id !== result._id;
+            });
+
+            if (res >= 0) {
+              this.openSnackBar('Error: book already exists');
             } else {
-              const idToUpdate = this.books.findIndex(book => book._id == result._id);
-              this.books[idToUpdate].BookTitle = result.bookTitle;
-              this.books[idToUpdate].AuthorName = result.authorName;
-              this.books[idToUpdate].PublishedDate = result.publishedDate;
+              if (result._id == '') {
+                const newBook = new Book(uuid(), result.authorName, result.bookTitle, result.publishedDate);
+                this.books.push(newBook);
+              } else {
+                const idToUpdate = this.books.findIndex(book => book._id == result._id);
+                this.books[idToUpdate].BookTitle = result.bookTitle;
+                this.books[idToUpdate].AuthorName = result.authorName;
+                this.books[idToUpdate].PublishedDate = result.publishedDate;
+              }
             }
+          } else {
+            this.openSnackBar(errors);
           }
-        } else {
-          this.openSnackBar(errors);
+  
+          this.loading = false;
         }
-
-        this.loading = false;
       }
     });
   }
@@ -119,7 +128,7 @@ export class AppComponent implements OnInit {
       errors.push('Author name must not be empty');
     }
 
-    if (this.isEmpty(result.bookTitle)) {      
+    if (this.isEmpty(result.bookTitle)) {
       errors.push('Book title must not be empty');
     }
 
@@ -132,22 +141,5 @@ export class AppComponent implements OnInit {
 
   isEmpty(value: string): boolean {
     return value == '';
-  }
-
-  isDate(input) {
-    let status = false;
-
-    if (!input || input.length <= 0) {
-      status = false;
-    } else {
-      try {
-        var result = new Date(input);
-        status = true;
-      } catch (ex) {
-        status = false;
-      }
-    }
-
-    return status;
   }
 }

@@ -4,7 +4,7 @@
     <p>Are you sure?</p>
   </div>
   <div mat-dialog-actions class="buttons">
-    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onYesClick()" [mat-dialog-close]="" cdkFocusInitial>Ok</button>
     <button mat-button (click)="onNoClick()">No Thanks</button>
   </div>
 </div>

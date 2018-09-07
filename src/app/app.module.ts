@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { Capitalize } from './Filters/capitalize.filter';
+import { CapitalizePipe } from './Filters/capitalize.filter';
 import { NewBookComponent } from './new-book/new-book.component';
 import { DeleteDialog } from './Dialogs/delete-dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -55,7 +55,7 @@ import {
   declarations: [
     AppComponent,
     NewBookComponent,
-    Capitalize,
+    CapitalizePipe,
     DeleteDialog    
   ],
   imports: [

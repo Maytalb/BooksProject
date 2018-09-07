@@ -3,7 +3,7 @@
   <mat-toolbar color="primary">
     <span>My Libray</span>
     <span class="fill-remaining-space"></span>
-    <button mat-raised-button (click)="openDialog()"><i class="fa fa-plus"></i> Add book</button>
+    <button mat-raised-button (click)="openDialog()"><i class="fa fa-plus"></i> Add new book</button>
   </mat-toolbar>
 </div>
 
@@ -19,7 +19,7 @@
   <div class="table-row" *ngFor="let book of books">
     <div class="text">{{book._id}}</div>
     <div class="text">{{book.BookTitle | capitalize}}</div>
-    <div class="text" title="vasan@example.com">{{book.AuthorName}}</div>
+    <div class="text">{{book.AuthorName}}</div>
     <div class="text">{{book.PublishedDate}}</div>
     <div class="text">
       <button mat-flat-button (click)="openDialog(book)"><i class="fa fa-pencil fa-fw"></i> Edit</button>
